@@ -1,3 +1,4 @@
+#!/bin/python3
 from random import shuffle
 from pathlib import Path
 
@@ -96,3 +97,5 @@ for pageNumber in range(len(listOfFiles)):
     EndHtml(write_path)
     print(f"here is {pageNumber}!")
 
+import webbrowser
+webbrowser.open(str(here.parent / web_directory / "0.html"))
