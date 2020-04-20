@@ -8,6 +8,16 @@ sourceDir = "source"
 percentage = 100 // rowLength
 
 
+def AddDate(write_path):
+    with write_path.open(mode="a") as dest:
+        dest.write('''<script>
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+    document.body.innerHTML = "<center><h2>Now is " + h.toString() + ":" + m.toString() + "</h2></center>"
+</script>''')
+
+
 def StartHtml(write_path):
     with write_path.open(mode="w") as dest:
         dest.write('''<HTML>
@@ -80,6 +90,7 @@ shuffle(listOfFiles)
 for pageNumber in range(len(listOfFiles)):
     write_path = here.parent / web_directory / (str(pageNumber) + ".html")
     StartHtml(write_path)
+    AddDate(write_path)
     StartTable(write_path)
     for i in range(rowLength):
         InsertCell(write_path, columns_count=rowLength)
